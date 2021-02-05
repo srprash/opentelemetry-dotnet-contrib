@@ -11,11 +11,8 @@ jobs:
     strategy:
       fail-fast: false  # ensures the entire test matrix is run, even if one permutation fails
       matrix:
-        os: [ windows-latest, ubuntu-latest ]
-        version: [ net461, netcoreapp2.1, netcoreapp3.1 ]
-        exclude:
-          - os: ubuntu-latest
-          - version: net461
+        os: [windows-latest,ubuntu-latest]
+        version: [net461,netcoreapp2.1,netcoreapp3.1 ]
 
     steps:
     - uses: actions/checkout@v2
@@ -26,5 +23,5 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
-    - name: Test ${{ matrix.os }}-${{ matrix.version }}
+    - name: Test
       run: dotnet test **/bin/**/${{ matrix.version }}/*.Tests.dll
