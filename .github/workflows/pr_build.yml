@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-test:
-    runs-on: {{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false  # ensures the entire test matrix is run, even if one permutation fails
@@ -26,5 +26,5 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
-    - name: Test ${{ matrix.version }}
+    - name: Test ${{ matrix.os }}-${{ matrix.version }}
       run: dotnet test **/bin/**/${{ matrix.version }}/*.Tests.dll
