@@ -26,6 +26,10 @@ jobs:
       with:
         fetch-depth: 0 # fetching all
 
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    
     - name: Install dependencies
       run: dotnet restore
 
