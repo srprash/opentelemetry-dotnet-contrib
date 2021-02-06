@@ -30,18 +30,18 @@ jobs:
       run: dotnet restore
 
     - name: dotnet build
-      run: dotnet build src/$PROJECT --configuration Release --no-restore -p:Deterministic=true
+      run: dotnet build src/${{env.PROJECT}} --configuration Release --no-restore -p:Deterministic=true
 
     - name: dotnet pack
-      run: dotnet pack src/$PROJECT --configuration Release --no-build
+      run: dotnet pack src/${{env.PROJECT}} --configuration Release --no-build
 
     - name: Publish Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: $PROJECT-packages
-        path: '**/$PROJECT/bin/**/*.*nupkg'
+        name: ${{env.PROJECT}}-packages
+        path: '**/${{env.PROJECT}}/bin/**/*.*nupkg'
 
     # - name: Publish MyGet
     #   run: |
     #     nuget setApiKey ${{ secrets.MYGET_TOKEN }} -Source https://www.myget.org/F/opentelemetry-contrib/api/v2/package
-    #     nuget push **/$PROJECT/bin/**/*.nupkg -Source https://www.myget.org/F/opentelemetry-contrib/api/v2/package
+    #     nuget push **/${{env.PROJECT}}/bin/**/*.nupkg -Source https://www.myget.org/F/opentelemetry-contrib/api/v2/package
