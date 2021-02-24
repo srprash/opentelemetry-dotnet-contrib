@@ -1,5 +1,7 @@
 # Changelog - OpenTelemetry.Contrib.Instrumentation.AWS
 
+## 1.0.2 [Test]
+
 ## 1.0.1 [2021-Feb-24]
 
 This is the first release for the `OpenTelemetry.Contrib.Instrumentation.AWS`
